@@ -9,14 +9,22 @@ module.exports = {
   mode: "development",
   devServer: {
     port: 3000,
+    https: true,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers":
+        "X-Requested-With, content-type, Authorization",
+    },
     client: {
       overlay: false,
     },
   },
   output: {
-    publicPath: "http://localhost:3000/",
+    publicPath: "https://localhost:3000/",
   },
+
   module: {
     rules: [
       {
@@ -39,9 +47,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "host",
       remotes: {
-        remote1: "remote1@http://localhost:3001/remoteEntry.js",
-        remote2: "remote2@http://localhost:3002/remoteEntry.js",
-        remote3: "remote3@http://localhost:3003/remoteEntry.js",
+        remote1: "remote1@https://localhost:3001/remoteEntry.js",
+        remote2: "remote2@https://localhost:3002/remoteEntry.js",
+        remote3: "remote3@https://localhost:3003/remoteEntry.js",
       },
       shared: {
         react: {

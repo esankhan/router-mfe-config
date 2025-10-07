@@ -9,10 +9,16 @@ module.exports = {
   mode: "development",
   devServer: {
     port: 3003,
+    https: true,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+    },
   },
   output: {
-    publicPath: "http://localhost:3003/",
+    publicPath: "https://localhost:3003/",
   },
   module: {
     rules: [
